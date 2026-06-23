@@ -1,0 +1,72 @@
+# For use in a jupyter noteboook
+
+import numpy as np
+import scipy.signal
+import matplotlib
+import matplotlib.pyplot as plt
+import pandas as pd
+import sys
+import PIL
+
+# This is the code for making the plot graph for v1 run 1
+window_size = 50
+colors = ['#00CCFF', 'pink', 'blue', 'red']  # replace with colors you want for your graph; Can use default colors OR hex codes
+fig, ax = plt.subplots(figsize=(8, 6))
+
+file_path1 = './<filepath to your smd outputs>/fvsx.1.dat'
+data1 = np.loadtxt(file_path1)
+x1 = data1[:, 1] - data1[0, 1]
+y1 = data1[:, 2] * 69.5 # change the units of your raw SMD data into piconewtons (pN).
+
+file_path2 = './0<filepath to your smd outputs>/fvsx.1.dat'
+data2 = np.loadtxt(file_path2)
+x2 = data2[:, 1] - data2[0, 1]
+y2 = data2[:, 2] * 69.5
+
+file_path3 = './<filepath to your smd outputs>/fvsx.1.dat'
+data3 = np.loadtxt(file_path3)
+x3 = data3[:, 1] - data3[0, 1]
+y3 = data3[:, 2] * 69.5
+
+file_path4 = './<filepath to your smd outputs>/fvsx.1.dat'
+data4 = np.loadtxt(file_path4)
+x4 = data4[:, 1] - data4[0, 1]
+y4 = data4[:, 2] * 69.5
+
+# Just duplicate these lines to add more trajectoriesto be analyzed. Be sure to update numbering!
+
+x_averages1 = np.convolve(x1, np.ones(window_size) / window_size, mode='valid')
+y_averages1 = np.convolve(y1, np.ones(window_size) / window_size, mode='valid')
+ax.plot(x_averages1, y_averages1, label=f"<Your label here>", color=colors[0])
+
+x_averages2 = np.convolve(x2, np.ones(window_size) / window_size, mode='valid')
+y_averages2 = np.convolve(y2, np.ones(window_size) / window_size, mode='valid')
+ax.plot(x_averages2, y_averages2, label=f"<Your label here>", color=colors[1])
+
+x_averages3 = np.convolve(x3, np.ones(window_size) / window_size, mode='valid')
+y_averages3 = np.convolve(y3, np.ones(window_size) / window_size, mode='valid')
+ax.plot(x_averages3, y_averages3, label=f"<Your label here>", color=colors[2])
+
+x_averages4 = np.convolve(x4, np.ones(window_size) / window_size, mode='valid')
+y_averages4 = np.convolve(y4, np.ones(window_size) / window_size, mode='valid')
+ax.plot(x_averages4, y_averages4, label=f"<Your label here>", color=colors[3])
+
+# Just duplicate these lines to add more trajectories to the graph, be sure to update numbering
+
+# Set plot properties
+plt.ylim(-100, 700) # Limits Y axis values. Can change depending on your system. Good to include to make presentations clearer if comparing different systems.
+#plt.xlim(0,300)    # Limits X axis values. Can change depending on your system. Good to include to make presentations clearer if comparing different systems.
+
+plt.xlabel('Extension ($\mathrm{\AA}$)', fontsize=18)
+plt.ylabel('Force (pN)', fontsize=18)
+
+ax.tick_params(axis='both', which='major', labelsize=18)
+ax.tick_params(which='minor', length=4)
+
+ax.grid()
+ax.legend(fontsize=10)
+plt.tight_layout()
+
+# Save the graph as an image
+plt.show() # Use this before saving to make sure everything looks ok
+# plt.savefig('/projects/baker-lab/workspace/<path to where you want this image to go in your directory>/fvsx.jpeg')
