@@ -1,0 +1,31 @@
+protein equil
+ &cntrl
+  ! typically never change the following
+  imin=0, ! turns on min if 1, otherwise no minimization
+  ntx=5, ! restart with velocity information present from previous sim     
+  irest=1, ! restart the simulation from previous data     
+  ioutfm=1, ! print trajectory in binary format
+  ntxo=2, ! print final coordinates in binary format
+  ntf=2, ! for SHAKE
+  ntc=2, ! for SHAKE
+  
+  ! could be changed
+  nstlim=1250000, ! number of MD steps
+  dt=0.004, ! the timestep in picoseconds
+  ntwprt=(CHANGE ACCORDING TO CPPTRAJ.OUT),
+  ntpr=2500, ! how often to print energy info
+  ntwr=-5000000, ! how often to write restart file
+  ntwx=2500, ! how often to print trajectory data
+  ntb=2, ! turns on constant pressure
+  ntp=1, ! also needed for constant pressure, isotropic
+  taup=1.0, ! rate at which pressure is regulated
+  barostat=2, ! flag to control pressure, 2 means use Monte Carlo method
+  ntt=3, ! langevin thermostat
+  temp0=300.0, ! target temperature to maintain. MAKE SURE IF YOU ARE HEATING YOUR SYSTEM MORE/LESS, that this temperature matches your heat.in temp2.
+  gamma_ln=1.0, ! frequency of using the thermostat
+  cut=8.0, ! interaction non-bonded cutoff
+  ntr=1, ! turn on restraints
+  restraint_wt=10.0, ! strength of restraints
+  restraintmask="@CA", ! CA restraint is typical, but can also restrain more specifically. Refer to manual, and use resid not index.
+  ig=-1, ! random seed for thermostat
+ /
