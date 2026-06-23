@@ -1,0 +1,30 @@
+# Load in the necessary forcefields, water model
+# May need to change these lines depending on your system
+# Go to https://ambermd.org/AmberModels.php for more info
+source leaprc.protein.ff19SB
+source leaprc.water.opc
+
+# Removes the PDB residue mapping commands in the leaprc files which should remove terminal residue conversion
+# clearPdbResMap
+
+#Load the PDBs using the sequence above specifically
+prot1 = loadPdb ../00-structure/prot.pdb
+
+# Add bonds if present in your system here
+# bond prot1.1.N prot1.<your number here>.C -- replace with numbering specific to your system, this specific command joins N and C termini
+
+# solvate system - could use either or depending on size and shape of system
+# solvateoct prot1 OPCBOX 14 
+# solvatebox system OPCBOX {15.0, 15.0, 15.0}  -- adjust depending on size of system, better for long filaments
+
+# Adding Ions to neutralize charge - necessary to run simulations normally
+# Could alter these lines if you want to solvate with a specific concentration
+# Go to https://ambermd.org/tutorials/basic/tutorial8/index.php for more info
+addIonsRand prot1 Na+ 0 
+addIonsRand prot1 Cl- 0
+
+#save files
+saveAmberParm prot1 sys.parm7 sys.rst7
+
+# Quit
+quit
