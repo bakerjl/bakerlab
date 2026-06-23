@@ -1,0 +1,6 @@
+parm ../01-prep/hmass.parm7
+trajin ../04-equil/equil.5.ncrst
+distance :<bottom section restraint>@CA :<top section restraint>&!@H= out distance.dat
+vector :<bottom section restraint>@CA :<top section restraint>&!@H= out vector.dat
+run
+exit
