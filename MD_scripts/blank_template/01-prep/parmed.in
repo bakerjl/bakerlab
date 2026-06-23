@@ -1,0 +1,7 @@
+# Load in topology file
+parm sys.parm7
+# Does hydrogen mass repartitioning. Makes H atoms heavier, decreases mass of heavy atoms - conserves mass but slows vibrations
+hmassrepartition
+# Write out file
+outparm hmass.parm7
+quit
