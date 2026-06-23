@@ -1,0 +1,31 @@
+heating
+ &cntrl
+ ! stuff we won't change
+  imin=0, ! not doing minimization
+  ntx=1, ! read coordinates from previous simulation
+  irest=0, ! not a restart simulation using velocities
+  ioutfm=1, ! print coords and velocities using binary format
+  ntxo=2, ! format of final coords, netCDF
+  ntf=2, ! SHAKE
+  ntc=2, ! SHAKE
+  
+  ! stuff that could change
+  nstlim=250000, ! number of steps or iterations
+  ntwprt=<YOUR NUMBER HERE>, !equal to number of atoms we care about in the system - get from cpptraj.log file. MAKE SURE TO CHANGE!
+  dt=0.004, ! timestep in ps, so this is a 4 fs step
+  ntpr=2500, ! printing energy output
+  ntwr=-5000000, ! number of steps after which restart files are printed
+  ntwx=2500, ! frequency of writing coordinates to the trajectory
+  ntb=1, ! constant volume
+  ntp=0, ! no pressure regulation
+  ntt=3, ! Langevin thermostat
+  gamma_ln=1.0, ! collision frequency in inverse picoseconds
+  cut=8.0, ! interaction cutoff
+  ntr=1, ! use restraints
+  nmropt=1, ! use NMR restraints
+  restraint_wt=10.0, ! for position restraints this is the strength of restraint
+  restraintmask="@CA", ! CA restraint is typical, but can also restrain more specifically. Refer to manual, and use resid not index.
+  ig=-1, ! restarted sims, how to handle random seed
+ /
+ &wt type='TEMP0', istep1=0, istep2=250000, value1=100.0, value2=300.0 / ! can change value2 if you want to heat system more/less
+ &wt type='END' /
