@@ -1,5 +1,6 @@
 Use this folder for any sMD simulations. They continue from the last equilibration.
 Depending on your system, you may need to restrain the areas you will eventually pull in the heat and equilibration phases.
+Refer to the AMBER manual for more information.
 
 To easily get resid restraints in VMD's tk console:
 
