@@ -1,0 +1,19 @@
+Use this folder for any sMD simulations. They continue from the last equilibration.
+Depending on your system, you may need to restrain the areas you will eventually pull in the heat and equilibration phases.
+
+To easily get resid restraints in VMD's tk console:
+
+Load in the strip file, as well as any .nc file.
+
+set my_frags {<space separated list of desired fragments to restrain>}
+
+set sel [atomselect top "fragment $my_frags"]
+
+set res_list [lsort -unique -integer [$sel get resid]]
+
+set amber_mask [join $res_list ","]
+
+puts "Your AMBER mask selection should be:"
+puts ":$amber_mask"
+
+Then, condense into dashed sections in a comma seperated list, with @CA if fragments are proteins or &!@H if lipids.
