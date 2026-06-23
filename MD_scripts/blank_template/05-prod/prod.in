@@ -1,0 +1,31 @@
+protein production
+ &cntrl
+  ! stuff typically never changed
+  imin=0, ! no minimization if imin=0
+  ntx=5, ! use restart velocity info     
+  irest=1, ! do a restart from previous sim     
+  ioutfm=1, ! write trajectory binary format
+  ntxo=2, ! write final coords binary format
+  ntf=2, ! SHAKE
+  ntc=2, ! SHAKE
+  
+  ! stuff that could change
+  nstlim=250000000, ! length of simulation
+  dt=0.004, ! timestep
+  ntwprt=(CHANGE ACCORDING TO CPPTRAJ.OUT),
+  ntpr=2500, ! print energies
+  ntwr=-5000000, ! print restart files
+  ntwx=2500, ! print trajectory
+  ntb=2, ! pressure control on
+  ntp=1, ! isotopic pressure control
+  taup=1.0, ! frequency of pressure control
+  barostat=2, ! use monte carlo method for pressure control
+  ntt=3, ! langevin thermostat
+  temp0=300.0, ! target temperature. MAKE SURE IF YOU ARE HEATING YOUR SYSTEM MORE/LESS, that this temperature matches your heat.in temp2
+  gamma_ln=1.0, ! thermostat frequency
+  cut=8.0, ! non-bonded cutoff distance
+  ig=-1, ! use random seed
+  ntr=1,
+  ! restraint_wt=0.1,
+  ! restraintmask='<your restraints here>' ! Can typically delete this line unless you have a larger system. Uncomment above line if used.
+ /
