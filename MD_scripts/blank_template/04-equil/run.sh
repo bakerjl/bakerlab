@@ -9,7 +9,7 @@
 #SBATCH --partition=gpu                 # Partition (a.k.a. queue) to use
 #SBATCH --constraint=l40s		            # set the hardware type desired
 
-# Can change to an older verion of amber if you need a specific feature
+# Can change to an older version of amber if you need a specific feature
 module load amber
 
 #In case there are problems capture some info about the run environment
@@ -27,7 +27,7 @@ pmemd.cuda -O -i equil.3.in -o equil.3.out -p ../01-prep/hmass.parm7 -c ../04-eq
 pmemd.cuda -O -i equil.4.in -o equil.4.out -p ../01-prep/hmass.parm7 -c ../04-equil/equil.3.ncrst -r equil.4.ncrst -ref ../04-equil/equil.3.ncrst -x equil.4.nc
 pmemd.cuda -O -i equil.5.in -o equil.5.out -p ../01-prep/hmass.parm7 -c ../04-equil/equil.4.ncrst -r equil.5.ncrst -ref ../04-equil/equil.4.ncrst -x equil.5.nc
 
-# Organizes intermediate files into folders
+# Makes folders for intermediate files
 mkdir -p equil.1.ncrstFiles 
 mkdir -p equil.2.ncrstFiles
 mkdir -p equil.3.ncrstFiles
