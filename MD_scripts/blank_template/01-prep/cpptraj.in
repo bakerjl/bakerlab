@@ -1,0 +1,9 @@
+# include current date and time for convention
+# Load initial structure
+parm hmass.parm7
+# load initial trajectory
+trajin sys.rst7
+# strip ions and water molecules to make analysis/visualization quicker
+strip :WAT,Na+,Cl- parmout strip.parm7 
+run
+quit
