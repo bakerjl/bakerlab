@@ -1,0 +1,17 @@
+minimization
+ &cntrl
+  ! stuff I never change
+  imin=1, ! turn on minimization      
+  ntf=2, ! turning on SHAKE   
+  ntc=2, ! turning on SHAKE
+  
+  ! stuff that could be changed
+  maxcyc=5000, ! total number of minimization cycles
+  ncyc=2500, ! when to switch btwn steepest descent and conj grad methods
+  ntpr=100, ! how frequently to print energy output to logfile   
+  cut=8.0, ! non-bonded interaction cutoff distance
+  ntr=1,
+  restraint_wt=10.0,
+  restraintmask='@CA',
+ /
+ 
