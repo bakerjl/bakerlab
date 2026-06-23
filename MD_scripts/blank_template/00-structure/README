@@ -1,0 +1,3 @@
+This file should contain the initial structure you are using. To simplify further run.sh scripts, it's recommended that you use these commands in the terminal:
+module load amber
+pdb4amber -i your_file_name_here -o prot.pdb
