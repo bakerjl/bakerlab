@@ -1,0 +1,31 @@
+#!/bin/bash
+#SBATCH -D ./                               # Set the working directory
+#SBATCH --mail-user=nobody@tcnj.edu         # Who to send emails to
+#SBATCH --mail-type=ALL                     # Send emails on start, end and failure
+#SBATCH --job-name=pickatoms                # Name to show in the job queue
+#SBATCH --ntasks=<make equal to total number of sections of atoms>                          # Total number of mpi tasks requested
+#SBATCH --nodes=1                           # Total number of nodes requested
+#SBATCH --partition=normal                  # Partition (a.k.a. queue) to use
+
+# Can change to an older version of amber if you need a specific feature
+module load amber
+
+#In case there are problems capture some info about the run environpat
+hostname
+which mpirun
+echo $PATH
+echo $LD_LIBRARY_PATH
+echo '------------------------------------------------------------------------'
+echo "Starting @ `date`"
+
+#make some measurements
+cpptraj -i measure-end-to-end-dist.in > measure-end-to-end-dist.log
+#runs ambmask to find the CA atoms for the bottom subunits, and then grabs the indices and puts them into a comma separated list
+ambmask -p ../01-prep/hmass.parm7 -c ../01-prep/sys.rst7 -find ':<protein sections to restrain (resids)>@CA | :<protein sections to restrain (resids)@CA | etc... > bottom-atoms
+awk '{$2=$2","; print $2 }' bottom-atoms | tail -n +8 | tr -d "\n" > bottom-atoms-indices
+
+#runs ambmask to find the CA atoms for the top subunit, and then grabs the indices and puts them into a comma separated list
+ambmask -p ../01-prep/hmass.parm7 -c ../01-prep/sys.rst7 -find ':<top residues to restrain (change to @CA if protein)>&!@H=' > top-ca-atoms
+awk '{$2=$2","; print $2 }' top-ca-atoms | tail -n +8 | tr -d "\n" > top-ca-atoms-indices
+
+echo "All done @ `date`"
