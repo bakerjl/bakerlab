@@ -6,11 +6,12 @@ source leaprc.water.opc
 
 # Removes the PDB residue mapping commands in the leaprc files which should remove terminal residue conversion
 # clearPdbResMap
+# edit this line if your proteins are cyclized
 
 #Load the PDBs using the sequence above specifically
 prot1 = loadPdb ../00-structure/prot.pdb
 
-# Add bonds if present in your system here
+# Add bonds if your proteins are cyclized
 # bond prot1.1.N prot1.<your number here>.C -- replace with numbering specific to your system, this specific command joins N and C termini
 
 # solvate system - could use either or depending on size and shape of system
