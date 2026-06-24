@@ -1,1 +1,57 @@
+# ==============================================================================
+# Baker Lab: Basic Trajectory Analysis Pipeline
+# Usage: cpptraj -i basic_analysis.in
+# ==============================================================================
+# 1. Load Topology and Trajectory
+parm hmass.parm7
+trajin prod.nc
 
+# 2. Centering and Multi-Chain Assembly
+# Since we run simulations with iwrap=0, single proteins will not fracture.
+# However, autoimage is still required to center the system for visualization
+# and to assemble multi-chain complexes (like dimers or pili) before alignment.
+autoimage
+
+# 3. Alignment
+# Align the trajectory to the first frame using the protein backbone (C-alpha atoms).
+# This provides a consistent reference frame for RMSD and RMSF.
+rms MyAlignment first :1-20@CA
+
+# ================= PHASE 1: GLOBAL STABILITY ==================================
+# Root Mean Square Deviation (RMSD)
+# Measures overall structural drift from the starting frame.
+rms ToFirst :1-20@CA first out rmsd.dat mass
+# Radius of Gyration (RoG)
+# Measures the overall compactness of the protein (unfolding vs. folding).
+radgyr MyRoG :1-20@CA out rog.dat mass
+
+# ================= PHASE 2: LOCAL FLEXIBILITY =================================
+# Root Mean Square Fluctuation (RMSF)
+# Identifies which specific residues or loops are highly flexible.
+# 'byres' gives one value per amino acid rather than per atom.
+atomicfluct MyRMSF :1-20@CA out rmsf.dat byres
+# Secondary Structure
+# Tracks how alpha helices and beta sheets evolve or degrade over time.
+secstruct MySecStruct :1-20 out secstruct.gnu
+
+# ================= PHASE 3: SPECIFIC INTERACTIONS =============================
+# Distance Metrics
+# Measures the space between two specific selections.
+# Example: distance between the C-alpha of residue 10 and residue 20.
+distance MyDist :10@CA :20@CA out distance.dat
+
+# Hydrogen Bonds
+# Tracks solute-solute H-bonds over the trajectory.
+# 'avgout' provides a clean summary table of the most persistent bonds.
+hbond MyHbonds :1-20 out hbond.dat avgout hbond_avg.dat
+
+# Native Contacts
+# Determines what fraction of the original (frame 1) contacts are maintained.
+# Looking at heavy atoms only (!@H=) with a 3.0 Angstrom cutoff.
+nativecontacts name MyContacts :1-20&!@H= byresidue distance 3.0 out native_contacts.dat
+
+# Execute all queued commands
+run
+
+# Quit at the end
+quit
