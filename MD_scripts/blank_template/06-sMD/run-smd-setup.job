@@ -21,7 +21,7 @@ echo "Starting @ `date`"
 #make some measurements
 cpptraj -i measure-end-to-end-dist.in > measure-end-to-end-dist.log
 #runs ambmask to find the CA atoms for the bottom subunits, and then grabs the indices and puts them into a comma separated list
-ambmask -p ../01-prep/hmass.parm7 -c ../01-prep/sys.rst7 -find ':<protein sections to restrain (resids)>@CA | :<protein sections to restrain (resids)@CA | etc... > bottom-atoms
+ambmask -p ../01-prep/hmass.parm7 -c ../01-prep/sys.rst7 -find ':<protein sections to restrain (resids)>@CA | :<protein sections to restrain (resids)>@CA | etc... > bottom-atoms
 awk '{$2=$2","; print $2 }' bottom-atoms | tail -n +8 | tr -d "\n" > bottom-atoms-indices
 
 #runs ambmask to find the CA atoms for the top subunit, and then grabs the indices and puts them into a comma separated list
