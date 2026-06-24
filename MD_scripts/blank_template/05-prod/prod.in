@@ -26,6 +26,6 @@ protein production
   cut=8.0, ! non-bonded cutoff distance
   ig=-1, ! use random seed
   ntr=1,
-  ! restraint_wt=0.1,
+  ! restraint_wt=0.1, ! restrains a specific part of your system
   ! restraintmask='<your restraints here>' ! Can typically delete this line unless you have a larger system. Uncomment above line if used.
  /
