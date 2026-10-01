@@ -1,1 +1,10 @@
 Place for MD protocol templates. If you want to add anything specific to your project, make a new directory and name it clearly.
+
+Please avoid frequent restructuring of your folder system.
+It is good practice to number all of your directories including the names of your projects.
+Keeping things consistent makes analysis scripts simpler to use down the line.
+
+Avoid copying .nc files if you want to copy all of the input and run files from a specific folder use the cp command in terminal,
+after cd'ing to the destination folder:
+cp /<filepath to where files you want to copy are>/*.in .
+cp /<filepath to where files you want to copy are>/*.sh .
