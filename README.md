@@ -16,7 +16,7 @@ Rules:
 
 Please avoid frequent restructuring of your folder system.\
 It is good practice to number all of your directories including the names of your projects.\
-Keeping things consistent makes analysis scripts simpler to use down the line.\
+Keeping things consistent makes analysis scripts simpler to use down the line.
 
 Avoid copying .nc files.\
 If you want to copy all of the input and run files from a specific folder use the cp command in terminal,\
