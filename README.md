@@ -13,3 +13,14 @@ Rules:
 >  to outline what people will need to change for their files)\
 >  • Use placeholder names for any files specific to your directory setup.\
 >  • Only upload into the scripts folder for your relevant projects.
+
+Please avoid frequent restructuring of your folder system.\
+It is good practice to number all of your directories including the names of your projects.\
+Keeping things consistent makes analysis scripts simpler to use down the line.\
+
+Avoid copying .nc files.\
+If you want to copy all of the input and run files from a specific folder use the cp command in terminal,\
+after cd'ing to the destination folder:\
+> cp /<filepath to where files you want to copy are>/*.in .\
+> cp /<filepath to where files you want to copy are>/*.sh .
+
