@@ -20,7 +20,7 @@ Keeping things consistent makes analysis scripts simpler to use down the line.\
 
 Avoid copying .nc files.\
 If you want to copy all of the input and run files from a specific folder use the cp command in terminal,\
-after cd'ing to the destination folder:\
+after cd'ing to the destination folder:
 > cp /<filepath to where files you want to copy are>/*.in .\
 > cp /<filepath to where files you want to copy are>/*.sh .
 
