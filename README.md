@@ -2,7 +2,7 @@
 This is the home for all of the Baker Lab stuff\
 A place to share any relevant scripts in a way that is easier to navigate than through directories in onDemand.\
 \
-Rules:
+Rules:\
   • Feel free to upload any new analysis scripts and update old ones if you have any major improvements,\
   but for the most part, if it ain't broke, don't fix it!\
   • Make sure all relevant scripts are organized into folders and named clearly.\
