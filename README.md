@@ -12,4 +12,4 @@ Rules:
 >  • Include comments throughout code explaining what it does (doesn't need to be too detailed, mainly try \
 >  to outline what people will need to change for their files)\
 >  • Use placeholder names for any files specific to your directory setup.\
->  • Only upload into the scripts folder for your relevant projects.\
+>  • Only upload into the scripts folder for your relevant projects.
